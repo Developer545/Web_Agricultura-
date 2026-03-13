@@ -151,13 +151,15 @@ em { font-style: italic; color: var(--green-700); }
   position: fixed; top: 0; left: 0; right: 0;
   height: var(--navbar-h);
   z-index: 1000;
+  /* Degradado oscuro siempre visible para legibilidad sobre cualquier imagen */
+  background: linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 70%, transparent 100%);
   transition: background var(--transition), box-shadow var(--transition);
 }
 .navbar.scrolled {
-  background: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 2px 24px rgba(0,0,0,.08);
+  box-shadow: 0 2px 24px rgba(0,0,0,.10);
 }
 .navbar.scrolled .logo { color: var(--text-main); }
 .navbar.scrolled .nav-link { color: var(--text-main); }
@@ -173,7 +175,9 @@ em { font-style: italic; color: var(--green-700); }
   font-family: 'Inter', sans-serif;
   font-size: 1.15rem; color: #fff;
   letter-spacing: -.01em;
+  text-shadow: 0 1px 6px rgba(0,0,0,.5);
 }
+.navbar.scrolled .logo { text-shadow: none; }
 .logo strong { font-weight: 700; }
 .logo-icon {
   width: 36px; height: 36px;
@@ -188,13 +192,22 @@ em { font-style: italic; color: var(--green-700); }
   display: flex; align-items: center; gap: 8px;
 }
 .nav-link {
-  font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.92);
+  font-size: .9rem; font-weight: 600; color: #fff;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
+  text-shadow: 0 1px 6px rgba(0,0,0,.55);
   transition: color var(--transition), background var(--transition);
 }
-.nav-link:hover, .nav-link.active { color: var(--green-400); background: rgba(76,175,80,.1); }
-.navbar.scrolled .nav-link:hover  { color: var(--green-700); background: var(--green-100); }
+.nav-link:hover, .nav-link.active {
+  color: var(--green-400); background: rgba(76,175,80,.15);
+  text-shadow: none;
+}
+.navbar.scrolled .nav-link {
+  color: var(--text-main);
+  text-shadow: none;
+  font-weight: 500;
+}
+.navbar.scrolled .nav-link:hover { color: var(--green-700); background: var(--green-100); }
 
 .btn-nav-cta {
   display: inline-flex; align-items: center; gap: 7px;
