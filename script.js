@@ -100,22 +100,28 @@ class Carousel {
         this.counter    = document.getElementById('currentSlide');
         this.current    = 0;
         this.timer      = null;
+        // Guardia: si no hay slides, no hacer nada
+        if (!this.items.length) return;
         this.init();
     }
 
     init() {
-        document.getElementById('prevBtn')?.addEventListener('click', () => this.prev());
-        document.getElementById('nextBtn')?.addEventListener('click', () => this.next());
-
-        this.indicators.forEach((ind, i) => {
-            ind.addEventListener('click', () => this.goTo(i));
+        // Click en flechas → cambia slide Y reinicia cuenta regresiva
+        document.getElementById('prevBtn')?.addEventListener('click', () => {
+            this.prev(); this.resetTimer();
+        });
+        document.getElementById('nextBtn')?.addEventListener('click', () => {
+            this.next(); this.resetTimer();
         });
 
-        document.querySelector('.carousel-container')?.addEventListener('mouseenter', () => this.stop());
-        document.querySelector('.carousel-container')?.addEventListener('mouseleave', () => this.start());
+        // Click en indicadores
+        this.indicators.forEach((ind, i) => {
+            ind.addEventListener('click', () => { this.goTo(i); this.resetTimer(); });
+        });
 
-        this.start();
+        // Mostrar slide inicial y arrancar auto-slide
         this.update();
+        this.startTimer();
     }
 
     update() {
@@ -124,12 +130,21 @@ class Carousel {
         if (this.counter) this.counter.textContent = String(this.current + 1).padStart(2, '0');
     }
 
-    next()  { this.current = (this.current + 1) % this.items.length; this.update(); this.reset(); }
-    prev()  { this.current = (this.current - 1 + this.items.length) % this.items.length; this.update(); this.reset(); }
-    goTo(i) { this.current = i; this.update(); this.reset(); }
-    start() { this.timer = setInterval(() => this.next(), 6000); }
-    stop()  { clearInterval(this.timer); }
-    reset() { this.stop(); this.start(); }
+    // Solo cambian el slide — NO tocan el timer
+    next()  { this.current = (this.current + 1) % this.items.length; this.update(); }
+    prev()  { this.current = (this.current - 1 + this.items.length) % this.items.length; this.update(); }
+    goTo(i) { this.current = i; this.update(); }
+
+    // Gestión del timer completamente separada
+    startTimer() {
+        // Siempre limpiar antes de crear para evitar duplicados
+        if (this.timer) clearInterval(this.timer);
+        this.timer = setInterval(() => this.next(), 5500);
+    }
+    resetTimer() {
+        // El usuario interactuó: reinicia la cuenta regresiva desde cero
+        this.startTimer();
+    }
 }
 
 // ============================================
