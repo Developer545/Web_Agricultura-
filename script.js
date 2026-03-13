@@ -1,565 +1,270 @@
 // ============================================
-// CONFIGURACIÓN Y VARIABLES GLOBALES
+// AgriSoluciones — Premium JS
 // ============================================
 
-// Objeto con datos editables para WordPress
 const CONFIG = {
-    whatsapp: {
-        numero: '50322345678',
-        mensaje: 'Hola%20quisiera%20información%20sobre%20sus%20productos'
-    },
-    contacto: {
-        ubicacion: 'Calle Principal 123, San Salvador, El Salvador',
-        telefono: '+503 2234-5678',
-        email: 'info@agrisoluciones.com'
-    },
-    empresa: {
-        nombre: 'AgriSoluciones',
-        slogan: 'Soluciones sostenibles para tu negocio'
-    }
+    whatsapp: { numero: '50322345678', mensaje: 'Hola%20quisiera%20información%20sobre%20sus%20productos' },
+    contacto: { ubicacion: 'Calle Principal 123, San Salvador, El Salvador', telefono: '+503 2234-5678', email: 'info@agrisoluciones.com' }
 };
 
-// Carrito temporal
-let carrito = [];
-
 // ============================================
-// CAROUSEL FUNCTIONALITY
+// NAVBAR: transparent → scrolled
 // ============================================
+const navbar   = document.getElementById('navbar');
+const hamburger = document.getElementById('hamburger');
+const navMenu  = document.getElementById('navMenu');
 
-class Carousel {
-    constructor() {
-        this.items = document.querySelectorAll('.carousel-item');
-        this.indicators = document.querySelectorAll('.indicator');
-        this.currentSlide = 0;
-        this.autoSlideTimer = null;
-        this.preloadImages();
-        this.init();
-    }
-
-    preloadImages() {
-        // Precargar todas las imágenes del carrusel
-        this.items.forEach(item => {
-            const backgroundImage = window.getComputedStyle(item).backgroundImage;
-            if (backgroundImage && backgroundImage !== 'none') {
-                const url = backgroundImage.slice(5, -2); // Extrae URL de url('...')
-                const img = new Image();
-                img.src = url;
-            }
-        });
-    }
-
-    init() {
-        // Event listeners para botones
-        document.getElementById('prevBtn')?.addEventListener('click', () => this.prevSlide());
-        document.getElementById('nextBtn')?.addEventListener('click', () => this.nextSlide());
-
-        // Event listeners para indicadores
-        this.indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => this.goToSlide(index));
-        });
-
-        // Auto-slide cada 6 segundos
-        this.startAutoSlide();
-
-        // Pausar auto-slide al pasar mouse
-        document.querySelector('.carousel-container')?.addEventListener('mouseenter', () => this.stopAutoSlide());
-        document.querySelector('.carousel-container')?.addEventListener('mouseleave', () => this.startAutoSlide());
-    }
-
-    updateCarousel() {
-        this.items.forEach((item, index) => {
-            item.classList.toggle('active', index === this.currentSlide);
-        });
-
-        this.indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === this.currentSlide);
-        });
-    }
-
-    nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.items.length;
-        this.updateCarousel();
-        this.resetAutoSlide();
-    }
-
-    prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.items.length) % this.items.length;
-        this.updateCarousel();
-        this.resetAutoSlide();
-    }
-
-    goToSlide(index) {
-        this.currentSlide = index;
-        this.updateCarousel();
-        this.resetAutoSlide();
-    }
-
-    startAutoSlide() {
-        this.autoSlideTimer = setInterval(() => {
-            this.nextSlide();
-        }, 6000);
-    }
-
-    stopAutoSlide() {
-        if (this.autoSlideTimer) {
-            clearInterval(this.autoSlideTimer);
-        }
-    }
-
-    resetAutoSlide() {
-        this.stopAutoSlide();
-        this.startAutoSlide();
+function updateNavbar() {
+    if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
     }
 }
+window.addEventListener('scroll', updateNavbar, { passive: true });
+updateNavbar();
 
-// Inicializar carousel
-document.addEventListener('DOMContentLoaded', () => {
-    new Carousel();
+// Mobile menu toggle
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
+
+// Close menu on nav link click
+document.querySelectorAll('.nav-link, .btn-nav-cta').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger?.classList.remove('active');
+        navMenu?.classList.remove('active');
+    });
+});
+
+// Close menu on ESC
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        hamburger?.classList.remove('active');
+        navMenu?.classList.remove('active');
+    }
 });
 
 // ============================================
-// NAVBAR RESPONSIVE
+// SCROLL PROGRESS BAR
 // ============================================
+const scrollProgress = document.getElementById('scrollProgress');
 
-function setupMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    if (!hamburger) return;
-
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-
-    // Cerrar menú al hacer clic en un enlace
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
+function updateScrollProgress() {
+    const total  = document.documentElement.scrollHeight - window.innerHeight;
+    const pct    = total > 0 ? (window.scrollY / total) * 100 : 0;
+    if (scrollProgress) scrollProgress.style.width = pct + '%';
 }
-
-document.addEventListener('DOMContentLoaded', setupMobileMenu);
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
 // ============================================
 // SCROLL UP BUTTON
 // ============================================
-
 const scrollUpBtn = document.getElementById('scrollUpBtn');
 
 window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollUpBtn.classList.add('show');
-    } else {
-        scrollUpBtn.classList.remove('show');
-    }
+    if (scrollUpBtn) scrollUpBtn.classList.toggle('show', window.scrollY > 350);
+}, { passive: true });
+
+scrollUpBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-if (scrollUpBtn) {
-    scrollUpBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+// ============================================
+// SCROLL SPY — Nav Active Links
+// ============================================
+const spySections = document.querySelectorAll('section[id]');
+const spyLinks    = document.querySelectorAll('.nav-link[href^="#"]');
+
+function updateScrollSpy() {
+    let current = '';
+    spySections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    spyLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+}
+window.addEventListener('scroll', updateScrollSpy, { passive: true });
+
+// ============================================
+// CAROUSEL
+// ============================================
+class Carousel {
+    constructor() {
+        this.items      = document.querySelectorAll('.carousel-item');
+        this.indicators = document.querySelectorAll('.indicator');
+        this.counter    = document.getElementById('currentSlide');
+        this.current    = 0;
+        this.timer      = null;
+        this.init();
+    }
+
+    init() {
+        document.getElementById('prevBtn')?.addEventListener('click', () => this.prev());
+        document.getElementById('nextBtn')?.addEventListener('click', () => this.next());
+
+        this.indicators.forEach((ind, i) => {
+            ind.addEventListener('click', () => this.goTo(i));
         });
-    });
-}
 
+        document.querySelector('.carousel-container')?.addEventListener('mouseenter', () => this.stop());
+        document.querySelector('.carousel-container')?.addEventListener('mouseleave', () => this.start());
 
-// ============================================
-// FORMULARIO DE CONTACTO
-// ============================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    const contactoForm = document.getElementById('contactoForm');
-
-    if (contactoForm) {
-        contactoForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const nombre = document.getElementById('nombreContacto').value;
-            const email = document.getElementById('emailContacto').value;
-            const telefono = document.getElementById('telefonoContacto').value;
-            const asunto = document.getElementById('asuntoContacto').value;
-            const mensaje = document.getElementById('mensajeContacto').value;
-
-            // Crear mailto link
-            const destinatario = CONFIG.contacto.email;
-            const asuntoEmail = `Nuevo Mensaje de Contacto: ${asunto}`;
-            const cuerpo = `Nombre: ${nombre}\nEmail: ${email}\nTeléfono: ${telefono}\n\nMensaje:\n${mensaje}`;
-            const urlMail = `mailto:${destinatario}?subject=${encodeURIComponent(asuntoEmail)}&body=${encodeURIComponent(cuerpo)}`;
-
-            showNotification('Abriendo cliente de correo...', 'success');
-
-            setTimeout(() => {
-                window.location.href = urlMail;
-            }, 500);
-        });
+        this.start();
+        this.update();
     }
-});
 
-// ============================================
-// ACTUALIZAR DATOS DE CONTACTO
-// ============================================
-
-function actualizarDatosContacto() {
-    const ubicacionTexto = document.getElementById('ubicacion-texto');
-    const telefonoTexto = document.getElementById('telefono-texto');
-    const emailTexto = document.getElementById('email-texto');
-    const whatsappLink = document.querySelector('.whatsapp-float');
-
-    if (ubicacionTexto) {
-        ubicacionTexto.textContent = CONFIG.contacto.ubicacion;
+    update() {
+        this.items.forEach((item, i) => item.classList.toggle('active', i === this.current));
+        this.indicators.forEach((ind, i) => ind.classList.toggle('active', i === this.current));
+        if (this.counter) this.counter.textContent = String(this.current + 1).padStart(2, '0');
     }
-    if (telefonoTexto) {
-        telefonoTexto.textContent = CONFIG.contacto.telefono;
-    }
-    if (emailTexto) {
-        emailTexto.textContent = CONFIG.contacto.email;
-    }
-    if (whatsappLink) {
-        const numero = CONFIG.whatsapp.numero;
-        const mensaje = CONFIG.whatsapp.mensaje;
-        whatsappLink.href = `https://wa.me/${numero}?text=${mensaje}`;
-    }
-}
 
-document.addEventListener('DOMContentLoaded', actualizarDatosContacto);
-
-// ============================================
-// FUNCIONES PARA CARRITO
-// ============================================
-
-function agregarCarrito(producto) {
-    carrito.push(producto);
-    showNotification(`${producto} agregado al carrito`, 'success');
-    console.log('Carrito actualizado:', carrito);
+    next()  { this.current = (this.current + 1) % this.items.length; this.update(); this.reset(); }
+    prev()  { this.current = (this.current - 1 + this.items.length) % this.items.length; this.update(); this.reset(); }
+    goTo(i) { this.current = i; this.update(); this.reset(); }
+    start() { this.timer = setInterval(() => this.next(), 6000); }
+    stop()  { clearInterval(this.timer); }
+    reset() { this.stop(); this.start(); }
 }
 
 // ============================================
-// NOTIFICACIONES
+// STATS BAR — Animated Counters
 // ============================================
+function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-target') || el.textContent.replace(/\D/g, ''));
+    if (isNaN(target)) return;
+    let current = 0;
+    const duration = 1800;
+    const step = target / (duration / 16);
+    el.textContent = '0';
 
-function showNotification(mensaje, tipo = 'info') {
-    const notif = document.createElement('div');
-    notif.className = `notification notification-${tipo}`;
-    notif.innerHTML = `
-        <div class="notification-content">
-            ${tipo === 'success' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-info-circle"></i>'}
-            <span>${mensaje}</span>
-        </div>
-    `;
-
-    // Agregar estilos si no existen
-    if (!document.getElementById('notification-styles')) {
-        const styles = document.createElement('style');
-        styles.id = 'notification-styles';
-        styles.textContent = `
-            .notification {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: white;
-                padding: 15px 20px;
-                border-radius: 8px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-                z-index: 10000;
-                animation: slideInRight 0.3s ease;
-            }
-
-            .notification-content {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .notification-success {
-                background: linear-gradient(135deg, #2ecc71, #27ae60);
-                color: white;
-                border-left: 4px solid white;
-            }
-
-            .notification-info {
-                background: linear-gradient(135deg, #3498db, #2980b9);
-                color: white;
-                border-left: 4px solid white;
-            }
-
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(400px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(400px);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(styles);
-    }
-
-    document.body.appendChild(notif);
-
-    // Remover notificación después de 3 segundos
-    setTimeout(() => {
-        notif.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notif.remove(), 300);
-    }, 3000);
-}
-
-// ============================================
-// SMOOTH SCROLL Y OBSERVADOR DE ELEMENTOS
-// ============================================
-
-// Intersection Observer para animaciones al scroll
-const observador = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, {
-    threshold: 0.1
-});
-
-// Aplicar observer a elementos animables
-document.addEventListener('DOMContentLoaded', () => {
-    const elementos = document.querySelectorAll('.producto-card, .proyecto-card, .info-item');
-    elementos.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        observador.observe(el);
-    });
-});
-
-// ============================================
-// CONTADOR ANIMADO PARA ESTADÍSTICAS
-// ============================================
-
-function animar_contador(elemento, final) {
-    let actual = 0;
-    const incremento = final / 50;
-    const intervalo = setInterval(() => {
-        actual += incremento;
-        if (actual >= final) {
-            elemento.textContent = final;
-            clearInterval(intervalo);
+    const tick = () => {
+        current += step;
+        if (current >= target) {
+            el.textContent = target.toLocaleString('es');
         } else {
-            elemento.textContent = Math.floor(actual);
+            el.textContent = Math.floor(current).toLocaleString('es');
+            requestAnimationFrame(tick);
         }
-    }, 20);
-}
-
-// Aplicar animación a contadores cuando sean visibles
-const observadorContadores = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.animado) {
-            entry.target.dataset.animado = 'true';
-            const texto = entry.target.textContent;
-            const numero = parseInt(texto.replace(/\D/g, ''));
-            if (!isNaN(numero)) {
-                animar_contador(entry.target, numero);
-            }
-        }
-    });
-}, { threshold: 0.5 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const stats = document.querySelectorAll('.stat-item h4');
-    stats.forEach(stat => observadorContadores.observe(stat));
-});
-
-// ============================================
-// FUNCIONES AUXILIARES PARA WORDPRESS
-// ============================================
-
-// Función para actualizar configuración desde WordPress
-function actualizarConfiguracion(nuevosValores) {
-    Object.assign(CONFIG, nuevosValores);
-    actualizarDatosContacto();
-}
-
-// Obtener configuración actual
-function obtenerConfiguracion() {
-    return CONFIG;
-}
-
-// Función para exportar datos del carrito
-function exportarCarrito() {
-    return {
-        carrito: carrito,
-        timestamp: new Date().toISOString(),
-        total: carrito.length
     };
+    requestAnimationFrame(tick);
 }
 
-// Limpiar carrito
-function limpiarCarrito() {
-    carrito = [];
-    showNotification('Carrito vaciado', 'info');
-}
-
-// ============================================
-// VALIDACIÓN DE FORMULARIOS
-// ============================================
-
-function validarEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
-
-function validarTelefono(telefono) {
-    const regex = /^[\d\s\-\+\(\)]+$/;
-    return regex.test(telefono) && telefono.length >= 7;
-}
-
-// ============================================
-// EVENT DELEGATION PARA FORMULARIOS
-// ============================================
-
-document.addEventListener('submit', (e) => {
-    const form = e.target;
-
-    // Validar emails
-    const emailInputs = form.querySelectorAll('input[type="email"]');
-    let emailValido = true;
-    emailInputs.forEach(input => {
-        if (input.value && !validarEmail(input.value)) {
-            input.style.borderColor = '#e74c3c';
-            emailValido = false;
-        } else {
-            input.style.borderColor = '';
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.done) {
+            entry.target.dataset.done = '1';
+            animateCounter(entry.target);
         }
     });
+}, { threshold: 0.6 });
 
-    if (!emailValido) {
+// ============================================
+// REVEAL ON SCROLL — Cards and Sections
+// ============================================
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.12 });
+
+// ============================================
+// DOM CONTENT LOADED — Init everything
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    new Carousel();
+
+    // Observe stats counters
+    document.querySelectorAll('.stat-num').forEach(el => counterObserver.observe(el));
+
+    // Observe cards / reveal elements
+    document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+        el.style.transitionDelay = (i % 3 * 0.1) + 's';
+        revealObserver.observe(el);
+    });
+
+    // Update contact data from CONFIG
+    const ubicacion = document.getElementById('ubicacion-texto');
+    const telefono  = document.getElementById('telefono-texto');
+    const email     = document.getElementById('email-texto');
+    const waLink    = document.querySelector('.whatsapp-float');
+
+    if (ubicacion) ubicacion.textContent = CONFIG.contacto.ubicacion;
+    if (telefono)  telefono.textContent  = CONFIG.contacto.telefono;
+    if (email)     email.textContent     = CONFIG.contacto.email;
+    if (waLink)    waLink.href = `https://wa.me/${CONFIG.whatsapp.numero}?text=${CONFIG.whatsapp.mensaje}`;
+});
+
+// ============================================
+// CONTACT FORM
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactoForm');
+    if (!form) return;
+
+    form.addEventListener('submit', e => {
         e.preventDefault();
-        showNotification('Por favor ingresa un email válido', 'error');
-    }
+        const nombre  = document.getElementById('nombreContacto')?.value  || '';
+        const email   = document.getElementById('emailContacto')?.value   || '';
+        const telefono = document.getElementById('telefonoContacto')?.value || '';
+        const asunto  = document.getElementById('asuntoContacto')?.value  || '';
+        const mensaje = document.getElementById('mensajeContacto')?.value || '';
+
+        const dest = CONFIG.contacto.email;
+        const subj = encodeURIComponent(`Nuevo Mensaje: ${asunto}`);
+        const body = encodeURIComponent(`Nombre: ${nombre}\nEmail: ${email}\nTeléfono: ${telefono}\n\nMensaje:\n${mensaje}`);
+
+        showNotification('Abriendo cliente de correo...', 'success');
+        setTimeout(() => { window.location.href = `mailto:${dest}?subject=${subj}&body=${body}`; }, 500);
+    });
 });
 
 // ============================================
-// LAZY LOADING DE IMÁGENES
+// NOTIFICATIONS
 // ============================================
-
-function setupLazyLoading() {
-    const imagenes = document.querySelectorAll('img[src]');
-
-    const observadorImagenes = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.style.transition = 'opacity 0.5s ease';
-
-                // Si la imagen ya está cargada (caché del navegador)
-                if (img.complete) {
-                    img.style.opacity = '1';
-                } else {
-                    // Si aún no está cargada, esperar al evento load
-                    img.style.opacity = '0';
-                    img.addEventListener('load', () => {
-                        img.style.opacity = '1';
-                    });
-                }
-                observadorImagenes.unobserve(img);
-            }
-        });
-    });
-
-    imagenes.forEach(img => observadorImagenes.observe(img));
+function showNotification(msg, type = 'info') {
+    const notif = document.createElement('div');
+    notif.style.cssText = `
+        position:fixed; top:24px; right:24px; z-index:10000;
+        display:flex; align-items:center; gap:10px;
+        padding:14px 20px; border-radius:10px; color:#fff;
+        font-family:'Inter',sans-serif; font-size:.9rem; font-weight:500;
+        background:${type === 'success' ? 'linear-gradient(135deg,#2e7d32,#1b5e20)' : 'linear-gradient(135deg,#1565c0,#0d47a1)'};
+        box-shadow:0 8px 30px rgba(0,0,0,.2);
+        animation: slideIn .3s ease;
+    `;
+    notif.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i><span>${msg}</span>`;
+    document.body.appendChild(notif);
+    setTimeout(() => { notif.style.opacity = '0'; notif.style.transform = 'translateX(50px)'; notif.style.transition = '.3s'; setTimeout(() => notif.remove(), 300); }, 3000);
 }
 
-document.addEventListener('DOMContentLoaded', setupLazyLoading);
-
 // ============================================
-// ACCESIBILIDAD: NAVEGACIÓN CON TECLADO
+// VALIDATION HELPERS
 // ============================================
+function validarEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        // Cerrar menú móvil si está abierto
-        const navMenu = document.querySelector('.nav-menu');
-        if (navMenu?.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            document.querySelector('.hamburger').classList.remove('active');
-        }
-    }
+document.addEventListener('submit', e => {
+    const inputs = e.target.querySelectorAll('input[type="email"]');
+    let ok = true;
+    inputs.forEach(input => {
+        if (input.value && !validarEmail(input.value)) { input.style.borderColor = '#e53935'; ok = false; }
+        else input.style.borderColor = '';
+    });
+    if (!ok) { e.preventDefault(); showNotification('Por favor ingresa un email válido', 'error'); }
 });
 
 // ============================================
-// MÉTODOS DE INTEGRACIÓN PARA WORDPRESS
+// WORDPRESS / SDK INTEGRATION
 // ============================================
-
-// Objeto para integración con WordPress
 window.AgriSoluciones = {
-    actualizarConfiguracion,
-    obtenerConfiguracion,
-    exportarCarrito,
-    limpiarCarrito,
-    showNotification,
-    carousel: null,
-    
-    // Método para obtener datos de formularios
-    obtenerDatosFormulario(idFormulario) {
-        const form = document.getElementById(idFormulario);
-        if (!form) return null;
-        
-        const formData = new FormData(form);
-        return Object.fromEntries(formData);
-    },
-
-    // Método para actualizar producto
-    actualizarProducto(indice, nuevosDatos) {
-        const productCards = document.querySelectorAll('.producto-card');
-        if (productCards[indice]) {
-            const card = productCards[indice];
-            if (nuevosDatos.nombre) {
-                card.querySelector('.producto-info h3').textContent = nuevosDatos.nombre;
-            }
-            if (nuevosDatos.precio) {
-                card.querySelector('.producto-precio').textContent = nuevosDatos.precio;
-            }
-            if (nuevosDatos.descripcion) {
-                card.querySelector('.producto-info p').textContent = nuevosDatos.descripcion;
-            }
-        }
-    },
-
-    // Método para obtener estadísticas
-    obtenerEstadisticas() {
-        const stats = {};
-        document.querySelectorAll('.stat-item').forEach((item, index) => {
-            const valor = item.querySelector('h4').textContent;
-            const label = item.querySelector('p').textContent;
-            stats[`stat_${index}`] = { valor, label };
-        });
-        return stats;
-    }
+    actualizarConfiguracion(vals) { Object.assign(CONFIG, vals); },
+    obtenerConfiguracion()        { return CONFIG; },
+    showNotification
 };
 
-// Hacer disponible en consola para debugging
-console.log('AgriSoluciones SDK cargado. Usa window.AgriSoluciones para acceder a los métodos.');
-
-// ============================================
-// INICIALIZACIÓN GENERAL
-// ============================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Landing page cargada correctamente');
-    console.log('Configuración actual:', CONFIG);
-});
+console.log('AgriSoluciones Premium cargado ✓');

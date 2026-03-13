@@ -3,430 +3,664 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soluciones Agrícolas - Inicio</title>
+    <title>AgriSoluciones — Innovación Agrícola, El Salvador</title>
+    <meta name="description" content="Soluciones agrícolas de alta calidad: fertilizantes orgánicos, semillas certificadas, sistemas de riego y asesoría profesional para agricultores en El Salvador.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- NAVBAR -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-leaf"></i>
-                <span>AgriSoluciones</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#inicio" class="nav-link">Inicio</a></li>
-                <li><a href="#historia" class="nav-link">Nosotros</a></li>
-                <li><a href="#mision-vision" class="nav-link">Misión & Visión</a></li>
-                <li><a href="#productos" class="nav-link">Productos</a></li>
-                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            <a href="#inicio" class="logo">
+                <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+                <span>Agri<strong>Soluciones</strong></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio"        class="nav-link">Inicio</a></li>
+                <li><a href="#historia"      class="nav-link">Nosotros</a></li>
+                <li><a href="#mision-vision" class="nav-link">Misión &amp; Visión</a></li>
+                <li><a href="#productos"     class="nav-link">Productos</a></li>
+                <li><a href="#proyectos"     class="nav-link">Proyectos</a></li>
+                <li><a href="#contacto"      class="nav-link">Contacto</a></li>
+                <li>
+                    <a href="https://wa.me/50322345678?text=Hola%20quisiera%20información%20sobre%20sus%20productos"
+                       class="btn-nav-cta" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Cotizar
+                    </a>
+                </li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- HERO SECTION CON CAROUSEL -->
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  HERO CAROUSEL            ║ -->
+    <!-- ╚═══════════════════════════╝ -->
     <section id="inicio" class="hero">
         <div class="carousel-container">
             <div class="carousel">
-                <div class="carousel-item active" style="background-image: url('imagenes/carucel1.jpg');">
+
+                <div class="carousel-item active" style="background-image:url('imagenes/carucel1.jpg')">
                     <div class="carousel-overlay">
-                        <h1>Innovación Agrícola</h1>
-                        <p>Soluciones sostenibles para tu negocio</p>
+                        <span class="slide-tag">Desde 2015</span>
+                        <h1>Innovación <em>Agrícola</em></h1>
+                        <p>Soluciones sostenibles que transforman el campo salvadoreño</p>
+                        <div class="slide-ctas">
+                            <a href="#productos" class="btn-primary">Ver Productos</a>
+                            <a href="#historia"  class="btn-outline">Conocer más</a>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('imagenes/carucel2.jpg');">
+
+                <div class="carousel-item" style="background-image:url('imagenes/carucel2.jpg')">
                     <div class="carousel-overlay">
-                        <h1>Productos de Calidad</h1>
-                        <p>Certificados y confiables</p>
+                        <span class="slide-tag">Certificados</span>
+                        <h1>Productos de <em>Calidad</em></h1>
+                        <p>Insumos certificados y confiables para tu cosecha</p>
+                        <div class="slide-ctas">
+                            <a href="#productos" class="btn-primary">Explorar Catálogo</a>
+                            <a href="#contacto"  class="btn-outline">Solicitar Cotización</a>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('imagenes/carucel3.jpg');">
+
+                <div class="carousel-item" style="background-image:url('imagenes/carucel3.jpg')">
                     <div class="carousel-overlay">
-                        <h1>Crecimiento Garantizado</h1>
-                        <p>Aumenta tus ganancias con nosotros</p>
+                        <span class="slide-tag">Resultados reales</span>
+                        <h1>Crecimiento <em>Garantizado</em></h1>
+                        <p>Aumenta tus ganancias hasta un 40% con nuestro acompañamiento</p>
+                        <div class="slide-ctas">
+                            <a href="#proyectos" class="btn-primary">Ver Proyectos</a>
+                            <a href="#contacto"  class="btn-outline">Hablar con un Experto</a>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('imagenes/carucel4.jpg');">
+
+                <div class="carousel-item" style="background-image:url('imagenes/carucel4.jpg')">
                     <div class="carousel-overlay">
-                        <h1>Cultivos Sostenibles</h1>
-                        <p>Practicamos agricultura responsable</p>
+                        <span class="slide-tag">Sostenible</span>
+                        <h1>Cultivos <em>Sostenibles</em></h1>
+                        <p>Agricultura responsable que cuida el suelo para las próximas generaciones</p>
+                        <div class="slide-ctas">
+                            <a href="#mision-vision" class="btn-primary">Nuestra Filosofía</a>
+                            <a href="#productos"     class="btn-outline">Insumos Orgánicos</a>
+                        </div>
                     </div>
                 </div>
-                <div class="carousel-item" style="background-image: url('imagenes/carucel5.jpg');">
+
+                <div class="carousel-item" style="background-image:url('imagenes/carucel5.jpg')">
                     <div class="carousel-overlay">
-                        <h1>Tecnología Verde</h1>
-                        <p>Equipos modernos para mayor productividad</p>
+                        <span class="slide-tag">Tecnología verde</span>
+                        <h1>Tecnología <em>Verde</em></h1>
+                        <p>Equipos modernos para mayor productividad con menor impacto ambiental</p>
+                        <div class="slide-ctas">
+                            <a href="#productos" class="btn-primary">Ver Equipos</a>
+                            <a href="#contacto"  class="btn-outline">Asesoría Gratis</a>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Controles del carousel -->
-            <button class="carousel-btn prev" id="prevBtn">
+            <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <button class="carousel-btn next" id="nextBtn">
+            <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">
                 <i class="fas fa-chevron-right"></i>
             </button>
 
-            <!-- Indicadores -->
             <div class="carousel-indicators">
                 <span class="indicator active" data-slide="0"></span>
-                <span class="indicator" data-slide="1"></span>
-                <span class="indicator" data-slide="2"></span>
-                <span class="indicator" data-slide="3"></span>
-                <span class="indicator" data-slide="4"></span>
+                <span class="indicator"        data-slide="1"></span>
+                <span class="indicator"        data-slide="2"></span>
+                <span class="indicator"        data-slide="3"></span>
+                <span class="indicator"        data-slide="4"></span>
+            </div>
+
+            <!-- Número de slide -->
+            <div class="slide-counter">
+                <span id="currentSlide">01</span>/<span>05</span>
             </div>
         </div>
-
     </section>
 
-    <!-- HISTORIA -->
-    <section id="historia" class="historia">
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  STATS BAR                ║ -->
+    <!-- ╚═══════════════════════════╝ -->
+    <div class="stats-bar">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <span class="stat-num" data-target="500">500</span><span class="stat-plus">+</span>
+                <span class="stat-label">Agricultores Satisfechos</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-num" data-target="2500">2500</span><span class="stat-plus">+</span>
+                <span class="stat-label">Hectáreas Trabajadas</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-num" data-target="40">40</span><span class="stat-plus">%</span>
+                <span class="stat-label">Aumento Promedio</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-num" data-target="12">12</span><span class="stat-plus">+</span>
+                <span class="stat-label">Años de Experiencia</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  HISTORIA / NOSOTROS      ║ -->
+    <!-- ╚═══════════════════════════╝ -->
+    <section id="historia" class="historia reveal-section">
         <div class="container">
             <div class="section-header">
-                <h2>Nuestra Historia</h2>
-                <p>Conoce nuestro camino hacia la excelencia agrícola</p>
+                <span class="section-tag">Nuestra Historia</span>
+                <h2>Un camino hacia la <em>excelencia agrícola</em></h2>
+                <p>Desde 2015, transformamos el campo con innovación y compromiso</p>
             </div>
 
             <div class="historia-content">
                 <div class="historia-texto">
-                    <p>Desde nuestros inicios en el año 2015, hemos trabajado incansablemente para proporcionar soluciones agrícolas de la más alta calidad a nuestros clientes en toda la región. Nuestro compromiso con la innovación y la sostenibilidad nos ha permitido crecer y expandir nuestras operaciones.</p>
-                    <p>Hemos invertido en tecnología de punta y formación continua de nuestro equipo para garantizar que siempre ofrecemos los mejores productos y servicios. Cada día trabajamos para mejorar la vida de los agricultores y sus familias.</p>
+                    <p class="historia-lead">Nacimos de la convicción de que el agricultor salvadoreño merece lo mejor: tecnología accesible, insumos de calidad y acompañamiento profesional.</p>
+                    <p>Hemos invertido en tecnología de punta y formación continua de nuestro equipo para garantizar siempre los mejores productos y servicios. Cada día trabajamos para mejorar la vida de los agricultores y sus familias.</p>
+                    <div class="historia-milestones">
+                        <div class="milestone">
+                            <span class="m-year">2015</span>
+                            <span class="m-text">Fundación en San Salvador</span>
+                        </div>
+                        <div class="milestone">
+                            <span class="m-year">2018</span>
+                            <span class="m-text">Expansión a toda la región</span>
+                        </div>
+                        <div class="milestone">
+                            <span class="m-year">2022</span>
+                            <span class="m-text">Certificación de sostenibilidad</span>
+                        </div>
+                    </div>
+                    <a href="#contacto" class="btn-primary">Conoce al equipo</a>
                 </div>
                 <div class="historia-imagenes">
-                    <div class="imagen-pequena">
-                        <img src="imagenes/Img1.jpg" alt="Agricultores trabajando">
-                    </div>
-                    <div class="imagen-pequena">
-                        <img src="imagenes/Img2.jpg" alt="Técnicas agrícolas">
-                    </div>
-                    <div class="imagen-grande">
-                        <img src="imagenes/Img3.jpg" alt="Historia de nuestra empresa">
+                    <div class="img-grid">
+                        <div class="img-grid-top">
+                            <img src="imagenes/Img1.jpg" alt="Agricultores trabajando" loading="lazy">
+                            <img src="imagenes/Img2.jpg" alt="Técnicas agrícolas"    loading="lazy">
+                        </div>
+                        <div class="img-grid-bottom">
+                            <img src="imagenes/Img3.jpg" alt="Historia de la empresa" loading="lazy">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MISIÓN Y VISIÓN -->
-    <section id="mision-vision" class="mision-vision">
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  POR QUÉ ELEGIRNOS        ║ -->
+    <!-- ╚═══════════════════════════╝ -->
+    <section class="beneficios reveal-section">
+        <div class="container">
+            <div class="section-header light">
+                <span class="section-tag">¿Por qué elegirnos?</span>
+                <h2>El respaldo que tu cosecha <em>merece</em></h2>
+            </div>
+            <div class="beneficios-grid">
+                <div class="beneficio-card">
+                    <div class="b-icon"><i class="fas fa-award"></i></div>
+                    <h3>Calidad Certificada</h3>
+                    <p>Todos nuestros productos cuentan con certificaciones nacionales e internacionales que garantizan su eficacia.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="b-icon"><i class="fas fa-truck-fast"></i></div>
+                    <h3>Entrega Rápida</h3>
+                    <p>Llevamos tus insumos directamente a tu finca en todo El Salvador con tiempos de entrega récord.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="b-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Asesoría Continua</h3>
+                    <p>Un agrónomo certificado a tu disposición antes, durante y después de cada ciclo de cultivo.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="b-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Insumos Orgánicos</h3>
+                    <p>Priorizamos soluciones naturales que cuidan el suelo, el agua y la biodiversidad de tu terreno.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="b-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Resultados Medibles</h3>
+                    <p>Monitoreamos el rendimiento de tu cultivo con indicadores claros para que veas el retorno de tu inversión.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="b-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Precios Justos</h3>
+                    <p>Crédito flexible y planes de pago adaptados a la realidad del productor salvadoreño.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  MISIÓN & VISIÓN          ║ -->
+    <!-- ╚═══════════════════════════╝ -->
+    <section id="mision-vision" class="mision-vision reveal-section">
         <div class="container">
             <div class="section-header">
-                <h2>Misión & Visión</h2>
-                <p>Nuestros principios y objetivos</p>
+                <span class="section-tag">Propósito</span>
+                <h2>Misión &amp; <em>Visión</em></h2>
+                <p>Nuestros principios guían cada decisión que tomamos</p>
             </div>
 
             <div class="mision-vision-grid">
                 <div class="mv-item">
-                    <div class="mv-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
+                    <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
                     <h3>Misión</h3>
                     <p>Proporcionar soluciones agrícolas innovadoras y sostenibles que mejoren la productividad y rentabilidad de los agricultores, manteniendo nuestro compromiso con la calidad y el servicio al cliente.</p>
-                    <div class="mv-line"></div>
                 </div>
-
-                <div class="mv-item">
-                    <div class="mv-icon">
-                        <i class="fas fa-binoculars"></i>
-                    </div>
+                <div class="mv-item featured">
+                    <div class="mv-icon"><i class="fas fa-binoculars"></i></div>
                     <h3>Visión</h3>
-                    <p>Ser el proveedor agrícola líder de la región, reconocido por nuestra innovación, confiabilidad y compromiso ambiental, transformando la industria agrícola hacia un futuro más sostenible y próspero.</p>
-                    <div class="mv-line"></div>
+                    <p>Ser el proveedor agrícola líder de la región, reconocido por nuestra innovación, confiabilidad y compromiso ambiental, transformando la industria hacia un futuro más sostenible y próspero.</p>
                 </div>
-
                 <div class="mv-item">
-                    <div class="mv-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
+                    <div class="mv-icon"><i class="fas fa-star"></i></div>
                     <h3>Valores</h3>
                     <ul class="valores-lista">
-                        <li>Excelencia en todo lo que hacemos</li>
-                        <li>Sostenibilidad ambiental comprometida</li>
-                        <li>Transparencia en nuestras relaciones</li>
-                        <li>Innovación constante y mejora</li>
+                        <li><i class="fas fa-check"></i> Excelencia en todo lo que hacemos</li>
+                        <li><i class="fas fa-check"></i> Sostenibilidad ambiental comprometida</li>
+                        <li><i class="fas fa-check"></i> Transparencia en nuestras relaciones</li>
+                        <li><i class="fas fa-check"></i> Innovación constante y mejora</li>
                     </ul>
-                    <div class="mv-line"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRODUCTOS -->
-    <section id="productos" class="productos">
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  PRODUCTOS                ║ -->
+    <!-- ╚═══════════════════════════╝ -->
+    <section id="productos" class="productos reveal-section">
         <div class="container">
             <div class="section-header">
-                <h2>Nuestros Productos</h2>
-                <p>Descubre nuestra línea completa de soluciones agrícolas</p>
+                <span class="section-tag">Catálogo</span>
+                <h2>Nuestros <em>Productos</em></h2>
+                <p>Línea completa de insumos y servicios para maximizar tu producción</p>
             </div>
 
             <div class="productos-grid">
-                <div class="producto-card">
+
+                <div class="producto-card" data-reveal>
                     <div class="producto-imagen">
-                        <img src="imagenes/Fertilizantes.jpg" alt="Fertilizantes">
-                        <span class="producto-tag">Popular</span>
+                        <img src="imagenes/Fertilizantes.jpg" alt="Fertilizantes Orgánicos" loading="lazy">
+                        <span class="producto-badge popular">Popular</span>
+                        <div class="producto-hover-overlay">
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Fertilizantes%20Orgánicos"
+                               class="btn-hover-cta" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Cotizar ahora
+                            </a>
+                        </div>
                     </div>
                     <div class="producto-info">
+                        <div class="producto-categoria">Nutrición</div>
                         <h3>Fertilizantes Orgánicos</h3>
-                        <p>Fertilizantes 100% naturales que mejoran la calidad del suelo y aumentan la productividad.</p>
-                        <div class="producto-precio">$45.00 - $120.00</div>
+                        <p>100% naturales. Mejoran la estructura del suelo y aumentan la productividad a largo plazo.</p>
+                        <div class="producto-footer">
+                            <div class="producto-precio">$45 – $120</div>
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Fertilizantes%20Orgánicos"
+                               class="btn-card-cta" target="_blank">Cotizar</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="producto-card">
+                <div class="producto-card" data-reveal>
                     <div class="producto-imagen">
-                        <img src="imagenes/Semilla.jpg" alt="Semillas">
+                        <img src="imagenes/Semilla.jpg" alt="Semillas Certificadas" loading="lazy">
+                        <div class="producto-hover-overlay">
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Semillas%20Certificadas"
+                               class="btn-hover-cta" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Cotizar ahora
+                            </a>
+                        </div>
                     </div>
                     <div class="producto-info">
+                        <div class="producto-categoria">Semillas</div>
                         <h3>Semillas Certificadas</h3>
-                        <p>Semillas de alta germinación seleccionadas para óptimos rendimientos en tu región.</p>
-                        <div class="producto-precio">$2.50 - $25.00</div>
+                        <p>Alta germinación, seleccionadas para el clima y suelo salvadoreño. Variedades validadas.</p>
+                        <div class="producto-footer">
+                            <div class="producto-precio">$2.50 – $25</div>
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Semillas%20Certificadas"
+                               class="btn-card-cta" target="_blank">Cotizar</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="producto-card">
+                <div class="producto-card" data-reveal>
                     <div class="producto-imagen">
-                        <img src="imagenes/Pesticidas.jpg" alt="Pesticidas">
+                        <img src="imagenes/Pesticidas.jpg" alt="Pesticidas Naturales" loading="lazy">
+                        <div class="producto-hover-overlay">
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Pesticidas%20Naturales"
+                               class="btn-hover-cta" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Cotizar ahora
+                            </a>
+                        </div>
                     </div>
                     <div class="producto-info">
+                        <div class="producto-categoria">Protección</div>
                         <h3>Pesticidas Naturales</h3>
-                        <p>Protege tus cultivos con nuestros pesticidas orgánicos seguros y efectivos.</p>
-                        <div class="producto-precio">$35.00 - $95.00</div>
+                        <p>Protege tus cultivos sin dañar el ecosistema. Fórmulas orgánicas seguras y efectivas.</p>
+                        <div class="producto-footer">
+                            <div class="producto-precio">$35 – $95</div>
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Pesticidas%20Naturales"
+                               class="btn-card-cta" target="_blank">Cotizar</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="producto-card">
+                <div class="producto-card" data-reveal>
                     <div class="producto-imagen">
-                        <img src="imagenes/Herramientas.jpg" alt="Herramientas">
+                        <img src="imagenes/Herramientas.jpg" alt="Herramientas Agrícolas" loading="lazy">
+                        <div class="producto-hover-overlay">
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Herramientas%20Agrícolas"
+                               class="btn-hover-cta" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Cotizar ahora
+                            </a>
+                        </div>
                     </div>
                     <div class="producto-info">
+                        <div class="producto-categoria">Equipamiento</div>
                         <h3>Herramientas Agrícolas</h3>
-                        <p>Equipo profesional diseñado para mejorar tu eficiencia y productividad.</p>
-                        <div class="producto-precio">$75.00 - $350.00</div>
+                        <p>Equipo profesional de acero inoxidable. Diseñado para mayor eficiencia y durabilidad.</p>
+                        <div class="producto-footer">
+                            <div class="producto-precio">$75 – $350</div>
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Herramientas%20Agrícolas"
+                               class="btn-card-cta" target="_blank">Cotizar</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="producto-card">
+                <div class="producto-card" data-reveal>
                     <div class="producto-imagen">
-                        <img src="imagenes/Riego.jpg" alt="Riego">
+                        <img src="imagenes/Riego.jpg" alt="Sistemas de Riego" loading="lazy">
+                        <span class="producto-badge nuevo">Nuevo</span>
+                        <div class="producto-hover-overlay">
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Sistemas%20de%20Riego"
+                               class="btn-hover-cta" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Cotizar ahora
+                            </a>
+                        </div>
                     </div>
                     <div class="producto-info">
+                        <div class="producto-categoria">Riego</div>
                         <h3>Sistemas de Riego</h3>
-                        <p>Sistemas modernos para optimizar el uso del agua en tus cultivos.</p>
-                        <div class="producto-precio">$150.00 - $500.00</div>
+                        <p>Tecnología por goteo y microaspersión. Reduce el consumo de agua hasta un 40%.</p>
+                        <div class="producto-footer">
+                            <div class="producto-precio">$150 – $500</div>
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Sistemas%20de%20Riego"
+                               class="btn-card-cta" target="_blank">Cotizar</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="producto-card">
+                <div class="producto-card" data-reveal>
                     <div class="producto-imagen">
-                        <img src="imagenes/Asesoría.jpg" alt="Asesoría">
+                        <img src="imagenes/Asesoría.jpg" alt="Asesoría Agrícola" loading="lazy">
+                        <span class="producto-badge premium">Premium</span>
+                        <div class="producto-hover-overlay">
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Asesoría%20Agrícola"
+                               class="btn-hover-cta" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Cotizar ahora
+                            </a>
+                        </div>
                     </div>
                     <div class="producto-info">
+                        <div class="producto-categoria">Consultoría</div>
                         <h3>Asesoría Agrícola</h3>
-                        <p>Consultoría profesional para optimizar tu producción y rentabilidad.</p>
-                        <div class="producto-precio">$200.00 - $500.00</div>
+                        <p>Acompañamiento de agrónomos certificados en campo. Diagnóstico, planificación y seguimiento.</p>
+                        <div class="producto-footer">
+                            <div class="producto-precio">$200 – $500</div>
+                            <a href="https://wa.me/50322345678?text=Me%20interesa%20Asesoría%20Agrícola"
+                               class="btn-card-cta" target="_blank">Cotizar</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            </div><!-- /productos-grid -->
         </div>
     </section>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos" class="proyectos">
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  PROYECTOS / CASOS ÉXITO  ║ -->
+    <!-- ╚═══════════════════════════╝ -->
+    <section id="proyectos" class="proyectos reveal-section">
         <div class="container">
             <div class="section-header">
-                <h2>Nuestros Proyectos</h2>
-                <p>Casos de éxito de clientes satisfechos</p>
+                <span class="section-tag">Casos de éxito</span>
+                <h2>Proyectos que <em>hablan por sí solos</em></h2>
+                <p>Resultados reales de agricultores que confiaron en nosotros</p>
             </div>
 
             <div class="proyectos-grid">
-                <div class="proyecto-card">
-                    <div class="proyecto-numero">01</div>
-                    <img src="imagenes/Cultivo de Maíz .jpg" alt="Proyecto 1">
+
+                <div class="proyecto-card" data-reveal>
+                    <div class="proyecto-img-wrap">
+                        <img src="imagenes/Cultivo de Maíz .jpg" alt="Cultivo de Maíz" loading="lazy">
+                        <div class="proyecto-num-badge">01</div>
+                    </div>
                     <div class="proyecto-contenido">
-                        <h3>Cultivo de Maíz - Región Central</h3>
+                        <div class="proyecto-stats">
+                            <span><i class="fas fa-expand-arrows-alt"></i> 50 Ha</span>
+                            <span><i class="fas fa-arrow-trend-up"></i> +40% Producción</span>
+                            <span><i class="fas fa-clock"></i> 6 meses</span>
+                        </div>
+                        <h3>Cultivo de Maíz — Región Central</h3>
                         <p>Implementamos nuestras soluciones en 50 hectáreas, aumentando la producción en un 40% en la primera temporada.</p>
-                        <div class="proyecto-stats">
-                            <span>50 Ha</span>
-                            <span>+40% Producción</span>
-                            <span>6 meses</span>
-                        </div>
+                        <a href="#contacto" class="btn-proyecto">Ver Caso Completo <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <div class="proyecto-card">
-                    <div class="proyecto-numero">02</div>
-                    <img src="imagenes/Frutales Tropicales.jpg" alt="Proyecto 2">
+                <div class="proyecto-card" data-reveal>
+                    <div class="proyecto-img-wrap">
+                        <img src="imagenes/Frutales Tropicales.jpg" alt="Frutales Tropicales" loading="lazy">
+                        <div class="proyecto-num-badge">02</div>
+                    </div>
                     <div class="proyecto-contenido">
-                        <h3>Frutales Tropicales - Zona Occidental</h3>
-                        <p>Desarrollamos un sistema integral de riego que redujo el consumo de agua en 35% manteniendo la calidad.</p>
                         <div class="proyecto-stats">
-                            <span>30 Ha</span>
-                            <span>-35% Agua</span>
-                            <span>4 meses</span>
+                            <span><i class="fas fa-expand-arrows-alt"></i> 30 Ha</span>
+                            <span><i class="fas fa-tint"></i> -35% Agua</span>
+                            <span><i class="fas fa-clock"></i> 4 meses</span>
                         </div>
+                        <h3>Frutales Tropicales — Zona Occidental</h3>
+                        <p>Sistema integral de riego que redujo el consumo de agua en 35% manteniendo la calidad del fruto.</p>
+                        <a href="#contacto" class="btn-proyecto">Ver Caso Completo <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <div class="proyecto-card">
-                    <div class="proyecto-numero">03</div>
-                    <img src="imagenes/Café Especializado.jpg" alt="Proyecto 3">
+                <div class="proyecto-card" data-reveal>
+                    <div class="proyecto-img-wrap">
+                        <img src="imagenes/Café Especializado.jpg" alt="Café Especializado" loading="lazy">
+                        <div class="proyecto-num-badge">03</div>
+                    </div>
                     <div class="proyecto-contenido">
-                        <h3>Café Especializado - Zona Volcánica</h3>
-                        <p>Logró certificación orgánica y aumentó su precio de venta en 55% con nuestro acompañamiento técnico.</p>
                         <div class="proyecto-stats">
-                            <span>20 Ha</span>
-                            <span>+55% Valor</span>
-                            <span>8 meses</span>
+                            <span><i class="fas fa-expand-arrows-alt"></i> 20 Ha</span>
+                            <span><i class="fas fa-dollar-sign"></i> +55% Valor</span>
+                            <span><i class="fas fa-clock"></i> 8 meses</span>
                         </div>
+                        <h3>Café Especializado — Zona Volcánica</h3>
+                        <p>Certificación orgánica lograda. Precio de venta aumentó 55% con nuestro acompañamiento técnico.</p>
+                        <a href="#contacto" class="btn-proyecto">Ver Caso Completo <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-            </div>
 
-            <div class="proyectos-stats">
-                <div class="stat-item">
-                    <h4>500+</h4>
-                    <p>Agricultores Satisfechos</p>
-                </div>
-                <div class="stat-item">
-                    <h4>2,500+</h4>
-                    <p>Hectáreas Trabajadas</p>
-                </div>
-                <div class="stat-item">
-                    <h4>35%</h4>
-                    <p>Aumento Promedio</p>
-                </div>
-                <div class="stat-item">
-                    <h4>12+</h4>
-                    <p>Años de Experiencia</p>
-                </div>
-            </div>
+            </div><!-- /proyectos-grid -->
         </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="contacto">
-        <div class="container">
-            <div class="section-header">
-                <h2>Contacto</h2>
-                <p>Ponte en contacto con nosotros</p>
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  CONTACTO                 ║ -->
+    <!-- ╚═══════════════════════════╝ -->
+    <section id="contacto" class="contacto reveal-section">
+        <div class="contacto-bg" style="background-image:url('imagenes/contacto.jpg')"></div>
+        <div class="contacto-overlay"></div>
+        <div class="container contacto-inner">
+            <div class="section-header light">
+                <span class="section-tag">Hablemos</span>
+                <h2>¿Listo para mejorar <em>tu cosecha</em>?</h2>
+                <p>Escríbenos y un agrónomo te contactará en menos de 24 horas</p>
             </div>
 
             <div class="contacto-content">
                 <div class="contacto-info">
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="info-texto">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
                             <h4>Ubicación</h4>
                             <p id="ubicacion-texto">Calle Principal 123, San Salvador, El Salvador</p>
                         </div>
                     </div>
-
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="info-texto">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <div>
                             <h4>Teléfono</h4>
                             <p id="telefono-texto">+503 2234-5678</p>
                         </div>
                     </div>
-
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="info-texto">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
                             <h4>Email</h4>
                             <p id="email-texto">info@agrisoluciones.com</p>
                         </div>
                     </div>
-
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="info-texto">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div>
                             <h4>Horario</h4>
-                            <p>Lunes - Viernes: 8:00 AM - 5:00 PM<br>Sábado: 8:00 AM - 12:00 PM</p>
+                            <p>Lun–Vie: 8:00 AM – 5:00 PM<br>Sáb: 8:00 AM – 12:00 PM</p>
                         </div>
                     </div>
+                    <a href="https://wa.me/50322345678?text=Hola%20quisiera%20información%20sobre%20sus%20productos"
+                       class="btn-whatsapp-big" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+                    </a>
                 </div>
 
                 <form class="contacto-form" id="contactoForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Tu nombre" id="nombreContacto" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre completo</label>
+                            <input type="text" placeholder="Tu nombre" id="nombreContacto" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo electrónico</label>
+                            <input type="email" placeholder="tucorreo@email.com" id="emailContacto" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Tu email" id="emailContacto" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="tel" placeholder="+503 0000-0000" id="telefonoContacto">
+                        </div>
+                        <div class="form-group">
+                            <label>Asunto</label>
+                            <input type="text" placeholder="¿En qué te podemos ayudar?" id="asuntoContacto" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="Teléfono" id="telefonoContacto">
+                    <div class="form-group full">
+                        <label>Mensaje</label>
+                        <textarea placeholder="Describe tu cultivo, área y necesidades…" id="mensajeContacto" rows="4" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Asunto" id="asuntoContacto" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Tu mensaje..." id="mensajeContacto" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit-grande">Enviar Mensaje</button>
+                    <button type="submit" class="btn-submit-grande">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ╔═══════════════════════════╗ -->
+    <!-- ║  FOOTER                   ║ -->
+    <!-- ╚═══════════════════════════╝ -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>AgriSoluciones</h4>
-                    <p>Comprometidos con tu éxito agrícola desde 2015.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo footer-logo">
+                        <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+                        <span>Agri<strong>Soluciones</strong></span>
+                    </div>
+                    <p>Comprometidos con tu éxito agrícola desde 2015. Tecnología, calidad y acompañamiento para el productor salvadoreño.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"  aria-label="Facebook" ><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="WhatsApp"  aria-label="WhatsApp"
+                           href="https://wa.me/50322345678"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" title="LinkedIn"  aria-label="LinkedIn" ><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Enlaces Rápidos</h4>
+
+                <div class="footer-col">
+                    <h5>Navegación</h5>
                     <ul>
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#historia">Nosotros</a></li>
+                        <li><a href="#mision-vision">Misión &amp; Visión</a></li>
                         <li><a href="#productos">Productos</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Síguenos</h4>
-                    <div class="social-links">
-                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
+
+                <div class="footer-col">
+                    <h5>Productos</h5>
+                    <ul>
+                        <li><a href="#productos">Fertilizantes Orgánicos</a></li>
+                        <li><a href="#productos">Semillas Certificadas</a></li>
+                        <li><a href="#productos">Pesticidas Naturales</a></li>
+                        <li><a href="#productos">Herramientas Agrícolas</a></li>
+                        <li><a href="#productos">Sistemas de Riego</a></li>
+                        <li><a href="#productos">Asesoría Profesional</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Contacto</h5>
+                    <ul class="footer-contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> Calle Principal 123, San Salvador</li>
+                        <li><i class="fas fa-phone"></i> +503 2234-5678</li>
+                        <li><i class="fas fa-envelope"></i> info@agrisoluciones.com</li>
+                        <li><i class="fas fa-clock"></i> Lun–Vie 8:00–17:00</li>
+                    </ul>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; 2024 AgriSoluciones. Todos los derechos reservados.</p>
+                <p>&copy; 2025 AgriSoluciones El Salvador. Todos los derechos reservados.</p>
+                <p>Diseñado con <i class="fas fa-heart"></i> para el campo salvadoreño</p>
             </div>
         </div>
     </footer>
 
-    <!-- WHATSAPP FLOTANTE -->
-    <a href="https://wa.me/50322345678?text=Hola%20quisiera%20información%20sobre%20sus%20productos" 
-       class="whatsapp-float" 
-       target="_blank" 
-       title="Contáctanos por WhatsApp">
+    <!-- WHATSAPP FAB -->
+    <a href="https://wa.me/50322345678?text=Hola%20quisiera%20información%20sobre%20sus%20productos"
+       class="whatsapp-float" target="_blank" aria-label="WhatsApp">
         <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">¡Escríbenos!</span>
     </a>
 
-    <!-- BOTÓN SCROLL UP -->
-    <button class="scroll-up" id="scrollUpBtn">
+    <!-- SCROLL UP -->
+    <button class="scroll-up" id="scrollUpBtn" aria-label="Volver arriba">
         <i class="fas fa-arrow-up"></i>
     </button>
 
